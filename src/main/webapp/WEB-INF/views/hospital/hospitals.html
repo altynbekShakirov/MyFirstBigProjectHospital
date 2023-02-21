@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+
+
+
+
+<div class="wrapper-btn">
+<!--    <a th:href="@{/url}">-->
+<!--        <button class="btn btn-primary" type="button">back</button>-->
+<!--    </a>-->
+<!--    <a th:href="@{/companies/savePage}">-->
+<!--        <button class="btn btn-primary" type="button">Add</button>-->
+<!--    </a>-->
+</div>
+<div class="container mt-3">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Logo</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hospital : ${hospital}">
+            <td th:text="${hospital.model.Hospital.getId()}"></td>
+            <td th:text="${hospital.model.Hospital.getName()}"></td>
+            <td th:text="${hospital.model.Hospital.getAddress()}"></td>
+
+
+            <!--            <td>-->
+            <!--                <a th:href="@{/companies(id=${company.id})}">-->
+            <!--                    <button class="btn btn-primary" type="submit">edit</button>-->
+            <!--                </a>-->
+            <!--                <a th:href="@{/url/{id}(id=${peremenyi.id})}">-->
+            <!--                    <button class="btn btn-danger" type="submit">delete</button>-->
+            <!--                </a>-->
+            <!--            </td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+</body>
+</html>
