@@ -1,4 +1,4 @@
-package hospital.config;
+package peaksoft.config;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:datasource.properties")
 @EnableTransactionManagement
-@ComponentScan(basePackages = "hospital")
+@ComponentScan(basePackages = "peaksoft")
 public class HibernateConfig {
 
     private final Environment environment;

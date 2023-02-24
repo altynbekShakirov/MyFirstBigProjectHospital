@@ -1,23 +1,23 @@
-package hospital.repostitory.repositoryImpl;
+package peaksoft.repostitory.repositoryImpl;
 
-import hospital.model.Department;
-import hospital.model.Hospital;
-import hospital.repostitory.DepartmentRepository;
+import peaksoft.model.Department;
+import peaksoft.model.Doctor;
+import peaksoft.model.Hospital;
+import peaksoft.myExceptions.UniqueException;
+import peaksoft.repostitory.DepartmentRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * The golden boy
  */
 @Repository
-@Controller
 @Transactional
 public class DepartmentRepositoryImpl implements DepartmentRepository {
     @PersistenceContext
@@ -36,9 +36,23 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
         return department;
     }
 
+
     @Override
-    public List<Department> getAll() {
-        return entityManager.createQuery("select l from Department l",Department.class).getResultList();
+    public List<Department> getAll(Long id) {
+        return entityManager.createQuery("select l from Department l join l.hospital h where  h.id=:id",Department.class).setParameter("id",id).getResultList();
+    }
+
+    @Override
+    public String assignDepartment(Long doctorId, Long departmentId) throws UniqueException {
+        Doctor doctor = entityManager.find(Doctor.class, doctorId);
+        Department department = entityManager.find(Department.class, departmentId);
+        doctor.addDepartment(department);
+        department.addDoctor(doctor);
+
+        entityManager.merge(department);
+        entityManager.merge(doctor);
+
+        return null;
     }
 
     @Override
@@ -51,14 +65,12 @@ public class DepartmentRepositoryImpl implements DepartmentRepository {
 
     @Override
     public void deleteById(Long id) {
-        Department department = entityManager.find(Department.class, id);
-        entityManager.remove(department);
-
+       entityManager.createQuery("delete  from Department  d where d.id=:id")
+               .setParameter("id",id).executeUpdate();
     }
 
     @Override
     public Department getById(Long id) {
         return entityManager.find(Department.class, id);
-
     }
 }

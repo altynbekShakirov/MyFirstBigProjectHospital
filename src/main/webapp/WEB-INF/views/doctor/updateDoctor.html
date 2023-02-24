@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Update Doctor</title>
 </head>
-<body>
-$END$
-</body>
+
+
+    <body>
+    <div class="wrapper-btn">
+        <a th:href="@{/doctors/{id}(id=${hospitalId})}">
+            <button class="btn btn-primary" type="button"><~~</button>
+        </a>
+    </div>
+    <div style="text-align:center; margin-top:200px; font-size: 30px;">
+    <form th:action="@{/doctors/updateSaveDoctor/{doctorId}(doctorId=${doctorId})}"
+          th:object="${oldDoctor}"
+          th:method="POST">
+        <div>
+            <div>
+                <input th:field="*{firstName}" placeholder="First Name">
+            </div>
+            <div>
+                <input th:field="*{lastName}" placeholder="Last Name">
+            </div>
+            <div>
+                <input th:field="*{email}" placeholder=" Email">
+            </div>
+            <div>
+                <input th:field="*{position}" placeholder="Position ">
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="update">
+        </div>
+    </form>
+    </div>
+    </body>
+
 </html>

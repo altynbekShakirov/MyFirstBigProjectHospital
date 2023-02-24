@@ -1,9 +1,9 @@
-package hospital.repostitory.repositoryImpl;
+package peaksoft.repostitory.repositoryImpl;
 
-import hospital.model.Department;
-import hospital.model.Doctor;
-import hospital.model.Hospital;
-import hospital.repostitory.DoctorRepository;
+import peaksoft.model.Department;
+import peaksoft.model.Doctor;
+import peaksoft.model.Hospital;
+import peaksoft.repostitory.DoctorRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,18 +37,14 @@ public class DoctorRepositoryImpl implements DoctorRepository {
         return "Successfully save!!!!";
     }
 
-    @Override
-    public String assign(Long doctorId, Long departmentId) {
-        Doctor doctor = entityManager.find(Doctor.class, doctorId);
-        Department department = entityManager.find(Department.class, departmentId);
 
-        return null;
-    }
 
     @Override
-    public List<Doctor> getAll() {
-        return entityManager.createQuery("select c from  Doctor c",Doctor.class).getResultList();
+    public List<Doctor> getAll(Long id) {
+        return entityManager.createQuery("select c from  Doctor c join c.hospital h where h.id=:id",Doctor.class).setParameter("id",id).getResultList();
     }
+
+
 
     @Override
     public Doctor getById(Long id) {
@@ -55,14 +52,18 @@ public class DoctorRepositoryImpl implements DoctorRepository {
     }
 
     @Override
-    public void update( Doctor newDoctor) {
-      entityManager.merge(newDoctor);
+    public void update( Long id,Doctor newDoctor) {
+        Doctor doctor = entityManager.find(Doctor.class, id);
+        doctor.setEmail(newDoctor.getEmail());
+        doctor.setFirstName(newDoctor.getFirstName());
+        doctor.setPosition(newDoctor.getPosition());
+        doctor.setLastName(newDoctor.getLastName());
     }
 
     @Override
     public void delete(Long id) {
-        Doctor doctor = entityManager.find(Doctor.class, id);
-        entityManager.remove(doctor);
+
+        entityManager.createQuery("delete  from  Doctor d where  d.id=:id", Doctor.class).setParameter("id",id).executeUpdate();
 
     }
 }

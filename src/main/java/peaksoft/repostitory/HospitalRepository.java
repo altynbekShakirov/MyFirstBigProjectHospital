@@ -1,6 +1,6 @@
-package hospital.repostitory;
+package peaksoft.repostitory;
 
-import hospital.model.Hospital;
+import peaksoft.model.Hospital;
 
 import java.util.List;
 

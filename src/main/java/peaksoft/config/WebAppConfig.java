@@ -1,4 +1,4 @@
-package hospital.config;
+package peaksoft.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +15,7 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("hospital")
+@ComponentScan("peaksoft")
 public class WebAppConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;

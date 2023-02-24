@@ -1,10 +1,8 @@
-package hospital.service.serviceimpl;
+package peaksoft.service.serviceimpl;
 
-import hospital.model.Hospital;
-import hospital.model.Patients;
-import hospital.repostitory.PatientsRepository;
-import hospital.service.PatientsService;
-import jakarta.persistence.EntityManager;
+import peaksoft.model.Patient;
+import peaksoft.repostitory.PatientsRepository;
+import peaksoft.service.PatientsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,24 +17,24 @@ public class PatientsServiceImpl implements PatientsService {
 
     private final PatientsRepository patientsRepository;
     @Override
-    public String save(Long hospitalId, Patients patients) {
+    public String save(Long hospitalId, Patient patients) {
 
         return patientsRepository.save(hospitalId,patients);
     }
 
     @Override
-    public List<Patients> getAll() {
-        return patientsRepository.getAll();
+    public List<Patient> getAll(Long id) {
+        return patientsRepository.getAll(id);
     }
 
     @Override
-    public Patients getById(Long id) {
+    public Patient getById(Long id) {
         return patientsRepository.getById(id);
     }
 
     @Override
-    public void updatePatients(Patients newPatient) {
-        patientsRepository.updatePatients(newPatient);
+    public void updatePatients(Long id, Patient newPatient) {
+        patientsRepository.updatePatients(id,newPatient);
 
     }
 

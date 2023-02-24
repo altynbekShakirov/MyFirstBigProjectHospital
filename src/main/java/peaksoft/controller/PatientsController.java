@@ -1,8 +1,9 @@
-package hospital.controller;
+package peaksoft.controller;
 
-import hospital.model.Patients;
-import hospital.service.PatientsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import peaksoft.model.Patient;
+import peaksoft.model.enums.Gender;
+import peaksoft.service.PatientsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,32 +12,57 @@ import org.springframework.web.bind.annotation.*;
  * The golden boy
  */
 @Controller
-@RequestMapping("patients")
+@RequestMapping("/patients")
 public class PatientsController {
     private final PatientsService patientsService;
-      @Autowired
+    private Long hospitalId;
+    @Autowired
+
     public PatientsController(PatientsService patientsService) {
         this.patientsService = patientsService;
     }
 
-    @GetMapping
-    String getAll( Model model){
-          model.addAttribute("patients",patientsService.getAll());
-          return "patients/patients";
-    }
-    @GetMapping("/{hospitalId}/addPatient")
-    String  addPatient(@PathVariable("hospitalId") Long id,Model model){
-          model.addAttribute("addPatient",new Patients());
-          model.addAttribute("courseId",id);
-          return "patients/addPatients";
-    }
-    @PostMapping("/{hospitalId/savePatients")
-    String savePatient(@PathVariable("hospitalId")Long hospitalId,@ModelAttribute("patientId") Patients patients){
-          patientsService.save(hospitalId,patients);
-          return "redirect:patients/patients";
-    }
 
-
+    @GetMapping("/{hospitalId}")
+    String getAllPatient(@PathVariable("hospitalId")Long id, Model model){
+        model.addAttribute("hospitalId",id);
+        model.addAttribute("patients",patientsService.getAll(id));
+        hospitalId=id;
+        return "patients/patients";
+    }
+    @GetMapping("/addPatients/{hospitalId}")
+    String addPatient(@PathVariable("hospitalId") Long id ,Model model){
+        Patient patients = new Patient();
+        model.addAttribute("newPatient",patients);
+        model.addAttribute("hospitalId",id);
+        model.addAttribute("hospital",patientsService.getById(id));
+        model.addAttribute("male", Gender.MALE.name());
+        model.addAttribute("female",Gender.FEMALE.name());
+        return "patients/addPatients";
+    }
+    @PostMapping("/savePatients/{hospitalId}")
+    String savePatient(@PathVariable("hospitalId")Long id, Patient patients){
+        patientsService.save(id,patients);
+        return "redirect:/patients/"+id;
+    }
+    @DeleteMapping("/deletePatients/{patientId}")
+    String delete(@PathVariable("patientId") Long id) {
+        patientsService.deleteByPatientsId(id);
+        return "redirect:/patients/"+hospitalId;
+    }
+    @GetMapping("/{patientId}/editPatients")
+    String update(@PathVariable("patientId") Long id, Model model) {
+        model.addAttribute("oldPatient",patientsService.getById(id));
+        model.addAttribute("hospitalId",hospitalId);
+        model.addAttribute("male", Gender.MALE.name());
+        model.addAttribute("female",Gender.FEMALE.name());
+        return "patients/updatePatient";
+    }
+    @PatchMapping("/updateSavePatient/{patientId}")
+    String updateSavePatient(@PathVariable("patientId")Long id, Patient patients){
+        patientsService.updatePatients(id, patients);
+        return "redirect:/patients/"+hospitalId;
+    }
 
 
 

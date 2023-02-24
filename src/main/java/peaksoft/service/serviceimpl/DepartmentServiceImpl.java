@@ -1,11 +1,13 @@
-package hospital.service.serviceimpl;
+package peaksoft.service.serviceimpl;
 
-import hospital.model.Department;
-import hospital.repostitory.DepartmentRepository;
-import hospital.service.DepartmentService;
+import peaksoft.model.Department;
+import peaksoft.myExceptions.UniqueException;
+import peaksoft.repostitory.DepartmentRepository;
+import peaksoft.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -21,8 +23,13 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Department> getAll() {
-        return departmentRepository.getAll();
+    public List<Department> getAll(Long id) {
+        return departmentRepository.getAll(id);
+    }
+
+    @Override
+    public String assignDepartment(Long doctorId, Long departmentId) throws  UniqueException {
+        return departmentRepository.assignDepartment(doctorId,departmentId);
     }
 
     @Override

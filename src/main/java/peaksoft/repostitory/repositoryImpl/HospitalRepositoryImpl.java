@@ -1,7 +1,7 @@
-package hospital.repostitory.repositoryImpl;
+package peaksoft.repostitory.repositoryImpl;
 
-import hospital.model.Hospital;
-import hospital.repostitory.HospitalRepository;
+import peaksoft.model.Hospital;
+import peaksoft.repostitory.HospitalRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -47,17 +47,16 @@ public class HospitalRepositoryImpl implements HospitalRepository {
     @Override
     public void update(Long id, Hospital newHospital) {
 
-       entityManager.createQuery("update Hospital set name=:n, address =:a where id=:id")
-               .setParameter("n",newHospital.getName())
-               .setParameter("a",newHospital.getAddress()).
-               setParameter( "id", id)
-               .executeUpdate();
+
+
+        Hospital hospital = entityManager.find(Hospital.class, id);
+        hospital.setAddress(newHospital.getAddress());
+        hospital.setName(newHospital.getName());
 
     }
 
     @Override
     public void deleteById(Long id) {
-        Hospital hospital = entityManager.find(Hospital.class, id);
-        entityManager.remove(hospital);
+       entityManager.createQuery("delete from Hospital h where h.id=:id", Hospital.class).setParameter("id",id).executeUpdate();
     }
 }

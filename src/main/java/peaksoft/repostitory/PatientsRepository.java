@@ -1,7 +1,6 @@
-package hospital.repostitory;
+package peaksoft.repostitory;
 
-import hospital.model.Hospital;
-import hospital.model.Patients;
+import peaksoft.model.Patient;
 
 import java.util.List;
 
@@ -9,10 +8,10 @@ import java.util.List;
  * The golden boy
  */
 public interface PatientsRepository {
-    String save(Long hospitalId, Patients patients);
-    List<Patients>getAll();
-    Patients getById(Long id);
-    void  updatePatients(Patients newPatient);
+    String save(Long hospitalId, Patient patients);
+    List<Patient>getAll(Long id);
+    Patient getById(Long id);
+    void  updatePatients(Long id, Patient newPatient);
     void deleteByPatientsId(Long id);
 
 }

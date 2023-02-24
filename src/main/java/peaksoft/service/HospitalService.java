@@ -1,6 +1,6 @@
-package hospital.service;
+package peaksoft.service;
 
-import hospital.model.Hospital;
+import peaksoft.model.Hospital;
 
 import java.util.List;
 

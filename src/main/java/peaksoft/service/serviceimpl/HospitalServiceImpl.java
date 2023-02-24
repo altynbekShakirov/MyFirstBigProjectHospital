@@ -1,8 +1,9 @@
-package hospital.service.serviceimpl;
+package peaksoft.service.serviceimpl;
 
-import hospital.model.Hospital;
-import hospital.repostitory.HospitalRepository;
-import hospital.service.HospitalService;
+import lombok.NoArgsConstructor;
+import peaksoft.model.Hospital;
+import peaksoft.repostitory.HospitalRepository;
+import peaksoft.service.HospitalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

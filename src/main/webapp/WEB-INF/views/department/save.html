@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title> Add Department</title>
 </head>
-<body>
-$END$
-</body>
+
+<div style="text-align:center; margin-top:200px; font-size: 30px;">
+    <body>
+    <div class="wrapper-btn">
+        <a th:href="@{/departments/{hospitalId}(hospitalId=${hospitalId})}">
+            <button class="btn btn-primary" type="button"><~~</button>
+        </a>
+    </div>
+    <form th:action="@{/departments/saveDepartment/{hospitalId}(hospitalId=${hospitalId})}"
+          th:object="${newDepartment}"
+          th:method="POST">
+
+        <div>
+            <label>
+                <input th:field="*{name}" type="text" name="name"  placeholder="Department name" >
+            </label>
+        </div>
+
+        <div><FORM>
+            <input type="submit" value="add department"></FORM>
+        </div>
+    </form>
+    </body>
+
+</div>
 </html>

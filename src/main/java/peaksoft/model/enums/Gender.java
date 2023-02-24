@@ -1,4 +1,4 @@
-package hospital.model.enums;
+package peaksoft.model.enums;
 
 /**
  * The golden boy

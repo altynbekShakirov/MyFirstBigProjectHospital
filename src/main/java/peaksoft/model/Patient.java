@@ -1,10 +1,10 @@
-package hospital.model;
+package peaksoft.model;
 
-import hospital.model.enums.Gender;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.intellij.lang.annotations.Pattern;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import static jakarta.persistence.CascadeType.PERSIST;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Patients {//бейтаптар
+public class Patient {//бейтаптар
  @Id
  @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "patients_id_gen")
  @SequenceGenerator(name = "patients_id_gen",sequenceName = "patients_id_seq",allocationSize = 1)
@@ -28,15 +28,25 @@ public class Patients {//бейтаптар
      private String firstName;
  @Column(name = "last_name")
      private String lastName;
-
+    @Column(name = "phone_number",unique = true)
      private String phoneNumber;
-     private Gender gender;
+     private String gender;
 
+     @Column(unique = true)
      private String email;
-     @ManyToOne(cascade = ALL,fetch = FetchType.LAZY)
+     @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST})
      private Hospital hospital;
 
-    @OneToMany(mappedBy = "patients",cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "patients",cascade = ALL)
      private List<Appointment> appointments;
+    @Transient
+    private Long hospitalId;
 
+    public Patient(String firstName, String lastName, String phoneNumber, String gender, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.gender = gender;
+        this.email = email;
+    }
 }

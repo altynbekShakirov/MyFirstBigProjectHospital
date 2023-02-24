@@ -1,6 +1,6 @@
-package hospital.repostitory;
+package peaksoft.repostitory;
 
-import hospital.model.Doctor;
+import peaksoft.model.Doctor;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface DoctorRepository {
     String  save(Long hospitalId,Doctor doctor);
-     String assign(Long doctorId,Long departmentId);
-     List<Doctor>getAll();
+
+     List<Doctor>getAll(Long id);
      Doctor getById(Long id);
-     void  update(Doctor newDoctor);
+     void  update(Long id,Doctor newDoctor);
      void delete(Long id);
 }

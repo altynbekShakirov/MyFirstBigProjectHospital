@@ -1,10 +1,13 @@
-package hospital.model;
+package peaksoft.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import peaksoft.myExceptions.UniqueException;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static jakarta.persistence.CascadeType.*;
@@ -30,10 +33,25 @@ public class Doctor {
     private String position;
 
     private String  email;
-    @ManyToMany(cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
-    private List<Department>departments;
-    @OneToMany(mappedBy = "doctor",cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {REFRESH,DETACH,MERGE,PERSIST})
+    private List<Department>departments ;
+    public void addDepartment(Department department) throws UniqueException{
+        if (departments == null){
+            departments = new ArrayList<>();
+        }
+        departments.add(department);
+    }
+    @OneToMany(mappedBy = "doctor",cascade = ALL)
     private List<Appointment>appointments;
-    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST})
     private Hospital hospital;
+    @Transient
+    private List<Long >departmentIdes=new ArrayList<>();
+
+    public Doctor(String firstName, String lastName, String position, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.position = position;
+        this.email = email;
+    }
 }

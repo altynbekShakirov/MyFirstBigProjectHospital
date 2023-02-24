@@ -1,4 +1,4 @@
-package hospital.config;
+package peaksoft.config;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;

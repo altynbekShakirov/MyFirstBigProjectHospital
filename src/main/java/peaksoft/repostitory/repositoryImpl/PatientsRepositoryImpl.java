@@ -1,8 +1,8 @@
-package hospital.repostitory.repositoryImpl;
+package peaksoft.repostitory.repositoryImpl;
 
-import hospital.model.Hospital;
-import hospital.model.Patients;
-import hospital.repostitory.PatientsRepository;
+import peaksoft.model.Hospital;
+import peaksoft.model.Patient;
+import peaksoft.repostitory.PatientsRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -28,9 +28,8 @@ public class PatientsRepositoryImpl implements PatientsRepository {
     }
 
     @Override
-    public String save(Long hospitalId, Patients patients) {
+    public String save(Long hospitalId, Patient patients) {
         entityManager.persist(patients);
-
         Hospital hospital = entityManager.find(Hospital.class, hospitalId);
         patients.setHospital(hospital);
         return "Successfully saved!!";
@@ -38,25 +37,28 @@ public class PatientsRepositoryImpl implements PatientsRepository {
 
 
     @Override
-    public List<Patients> getAll() {
-        return entityManager.createQuery("select l from  Patients l",Patients.class).getResultList();
+    public List<Patient> getAll(Long id ) {
+        return entityManager.createQuery("select l from  Patient l join  l.hospital s where s.id=:id", Patient.class).setParameter("id",id).getResultList();
     }
 
     @Override
-    public Patients getById(Long id) {
-        return entityManager.find(Patients.class,id);
+    public Patient getById(Long id) {
+        return entityManager.find(Patient.class,id);
     }
 
     @Override
-    public void updatePatients(Patients newPatient) {
-       entityManager.merge(newPatient);
+    public void updatePatients(Long id, Patient newPatient) {
+        Patient patients = entityManager.find(Patient.class, id);
+        patients.setGender(newPatient.getGender());
+        patients.setEmail(newPatient.getEmail());
+        patients.setFirstName(newPatient.getFirstName());
+        patients.setLastName(newPatient.getLastName());
+        patients.setPhoneNumber(newPatient.getPhoneNumber());
 
     }
 
     @Override
     public void deleteByPatientsId(Long id) {
-        Patients patients = entityManager.find(Patients.class, id);
-        entityManager.remove(patients);
-
+       entityManager.createQuery("delete from Patient  p where p.id=:id",Patient.class).setParameter("id",id).executeUpdate();
     }
 }

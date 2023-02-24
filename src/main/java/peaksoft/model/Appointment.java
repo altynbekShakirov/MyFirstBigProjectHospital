@@ -1,4 +1,4 @@
-package hospital.model;
+package peaksoft.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import static jakarta.persistence.CascadeType.*;
 import static jakarta.persistence.CascadeType.PERSIST;
@@ -22,19 +21,25 @@ import static jakarta.persistence.CascadeType.PERSIST;
 public class Appointment {//дайындоо
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "appointment_id_gen")
-    @SequenceGenerator(name = "appointment_id_gen",sequenceName = "appointment_id_seq",allocationSize = 1)
+    @SequenceGenerator(name = "appointment_id_gen",allocationSize = 1)
     private Long id;
     private LocalDate date;
 
-    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
-    private Patients patients;
-    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST})
+    private Patient patients;
+    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST})
     private Doctor doctor;
-    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
-    private  Department department;
-    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
-    private Hospital hospital;
+    @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST})
+    private Department department;
+    @Transient
+     private  Long patientId;
+    @Transient
+     private Long doctorId;
+    @Transient
+     private Long departmentId;
 
 
-
+    public Appointment(LocalDate date) {
+        this.date = date;
+    }
 }
