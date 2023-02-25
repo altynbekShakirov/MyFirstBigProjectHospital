@@ -59,6 +59,6 @@ public class PatientsRepositoryImpl implements PatientsRepository {
 
     @Override
     public void deleteByPatientsId(Long id) {
-       entityManager.createQuery("delete from Patient  p where p.id=:id",Patient.class).setParameter("id",id).executeUpdate();
+       entityManager.createQuery("delete from Patient  p where p.id=:id").setParameter("id",id).executeUpdate();
     }
 }

@@ -18,19 +18,19 @@
           th:method="PATCH">
         <div>
             <div>
-                <input th:field="*{firstName}" placeholder="First Name">
+                <input th:field="*{firstName}" placeholder="First Name" required>
             </div>
             <div>
-                <input th:field="*{lastName}" placeholder="Last Name">
+                <input th:field="*{lastName}" placeholder="Last Name" required>
             </div>
             <div>
-                <input th:field="*{email}" placeholder=" Email">
+                <input th:field="*{email}" placeholder=" Email"required>
             </div>
             <div>
-                <input th:field="*{phoneNumber}" placeholder="Phone Number ">
+                <input th:field="*{phoneNumber}" placeholder="Phone Number " required>
             </div>
             <div>
-                <select th:field="*{gender}">
+                <select th:field="*{gender}"  required>
                     <option th:value="${male}">MALE</option>
                     <option th:value="${female}">FEMALE</option>
                 </select>

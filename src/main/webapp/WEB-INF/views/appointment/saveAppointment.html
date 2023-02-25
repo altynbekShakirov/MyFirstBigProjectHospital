@@ -168,7 +168,7 @@
       <label for="dep">Department</label>
       <select th:field="*{departmentId}" id="dep" name="domain" required>
         <option value="">select an department</option>
-        <option th:each="dep : ${departments}" th:value="${dep.getId()}" th:text="${dep.getName()}">dep</option>
+        <option th:each="dep : ${departments}" th:value="${dep.id}" th:text="${dep.getName()}">dep</option>
       </select>
     </div>
 

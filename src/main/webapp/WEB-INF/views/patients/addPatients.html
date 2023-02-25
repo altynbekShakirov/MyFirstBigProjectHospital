@@ -19,20 +19,20 @@
 
         <div>
             <div>
-                <input th:field="*{firstName}" type="text"  placeholder=" first name" >
+                <input th:field="*{firstName}" type="text"  placeholder=" first name" required >
             </div>
             <div>
-                <input th:field="*{lastName}" type="text"  placeholder=" last name" >
+                <input th:field="*{lastName}" type="text"  placeholder=" last name" required >
             </div>
             <div>
-                <input th:field="*{phoneNumber}" type="text"  placeholder="+996 XXX XXX XXX" >
+                <input th:field="*{phoneNumber}" type="text"  placeholder="+996 XXX XXX XXX" required >
             </div>
 
             <div>
-                <input th:field="*{email}" type="email"  placeholder="email " >
+                <input th:field="*{email}" type="email"  placeholder="email " required >
             </div>
             <div>
-                <select th:field="*{gender}">
+                <select th:field="*{gender}" required>
                     <option th:value="${male}">MALE</option>
                     <option th:value="${female}">FEMALE</option>
                 </select>

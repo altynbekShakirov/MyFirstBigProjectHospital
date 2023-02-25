@@ -20,7 +20,7 @@
     <tbody>
     <tr th:each="hospital:${hospitals}">
         <th scope="row" th:text="${hospital.id}">id</th>
-        <td th:text="${hospital.name}">name</td>
+        <td th:text="${hospital.name}" >name</td>
         <td th:text="${hospital.address}">address</td>
         <td><a th:href="@{/hospitals/profile/{hospitalId}(hospitalId=${hospital.id})}"><button>profile</button></a>
         <td><form th:method="DELETE" th:action="@{/hospitals/{id}/deleteHospital (id=${hospital.id})}">

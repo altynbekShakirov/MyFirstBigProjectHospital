@@ -3,8 +3,7 @@ package peaksoft.service.serviceimpl;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import peaksoft.model.Appointment;
-import peaksoft.model.Hospital;
+import peaksoft.model.*;
 import peaksoft.repostitory.*;
 import peaksoft.service.AppointmentService;
 import org.springframework.stereotype.Service;
@@ -15,6 +14,7 @@ import java.util.List;
  * The golden boy
  */
 @Service
+@Transactional
 public class AppointmentServiceImpl implements AppointmentService {
 
 
@@ -31,8 +31,6 @@ public class AppointmentServiceImpl implements AppointmentService {
        this.patientsRepository = patientsRepository;
        this.doctorRepository = doctorRepository;
    }
-
-   @Transactional
     @Override
     public void save(Long id,Appointment appointment) {
        Hospital hospital= hospitalRepository.getById(id);
@@ -64,7 +62,16 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public void delete(Long id) {
-       appointmentRepository.delete(id);
+        Appointment existAppointment = appointmentRepository.getById(id);
+        Hospital existHospital = existAppointment.getDoctor().getHospital();
+        existHospital.getAppointments().remove(existAppointment);
+        for (Doctor doctor : existHospital.getDoctors()) {
+            doctor.getAppointments().remove(existAppointment);
+        }
+        for (Patient patient : existHospital.getPatients()) {
+            patient.getAppointments().remove(existAppointment);
+        }
+        appointmentRepository.delete(id);
 
     }
 }

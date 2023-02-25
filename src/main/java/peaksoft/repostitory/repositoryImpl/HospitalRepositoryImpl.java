@@ -57,6 +57,6 @@ public class HospitalRepositoryImpl implements HospitalRepository {
 
     @Override
     public void deleteById(Long id) {
-       entityManager.createQuery("delete from Hospital h where h.id=:id", Hospital.class).setParameter("id",id).executeUpdate();
+       entityManager.createQuery("delete from Hospital h where h.id=:id").setParameter("id",id).executeUpdate();
     }
 }

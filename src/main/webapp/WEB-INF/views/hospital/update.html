@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <title>Update Hospital</title>
 </head>
+<style>
+
+</style>
 
 <div style="text-align:center; margin-top:200px; font-size: 30px;">
 
@@ -19,13 +22,13 @@
           th:method="PATCH">
         <div>
             <label>
-                <input th:field="*{name}" placeholder="Hospital Name">
+                <input th:field="*{name}" placeholder="Hospital Name" required>
             </label>
         </div>
 
         <div>
             <label>
-                <input th:field="*{address}" placeholder="address">
+                <input th:field="*{address}" placeholder="address" required>
             </label>
         </div>
 

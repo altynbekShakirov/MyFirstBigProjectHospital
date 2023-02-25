@@ -1,7 +1,12 @@
 package peaksoft.service.serviceimpl;
 
+import jakarta.transaction.Transactional;
+import peaksoft.model.Appointment;
 import peaksoft.model.Department;
+import peaksoft.model.Doctor;
+import peaksoft.model.Hospital;
 import peaksoft.myExceptions.UniqueException;
+import peaksoft.repostitory.AppointmentRepository;
 import peaksoft.repostitory.DepartmentRepository;
 import peaksoft.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +20,14 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class DepartmentServiceImpl implements DepartmentService {
-    private  final DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;
+    private final AppointmentRepository appointmentRepository;
+
     @Override
     public Department save(Long hospitalId, Department department) {
-        return departmentRepository.save(hospitalId,department);
+        return departmentRepository.save(hospitalId, department);
     }
 
     @Override
@@ -28,20 +36,43 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public String assignDepartment(Long doctorId, Long departmentId) throws  UniqueException {
-        return departmentRepository.assignDepartment(doctorId,departmentId);
+    public String assignDepartment(Long doctorId, Long departmentId) throws UniqueException {
+        return departmentRepository.assignDepartment(doctorId, departmentId);
     }
 
     @Override
     public void update(Long id, Department newDepartment) {
-        departmentRepository.update(id,newDepartment);
+        departmentRepository.update(id, newDepartment);
 
     }
 
     @Override
     public void deleteById(Long id) {
-        departmentRepository.deleteById(id);
+        Department department = departmentRepository.getById(id);
+//        Hospital hospital = department.getHospital();
+//        List<Appointment>appointments=department.getHospital().getAppointments();
+//        appointments.forEach(a-> a.getDepartment().getHospital().setAppointments(null));
+//        appointments.forEach(a ->a.getDoctor().setAppointments(null));
+//        hospital.getAppointments().removeAll(appointments);
+//        for (int i = 0; i < appointments.size(); i++) {
+//            appointmentRepository.delete(appointments.get(i).getId());
+//
+//        }
+        List<Appointment> appointments = department.getHospital().getAppointments();
 
+        if (appointments != null) {
+            List<Appointment> appointmentList = appointments.stream().filter(s -> s.getDepartment().getId().equals(id)).toList();
+            appointmentList.forEach(s->appointmentRepository.delete(s.getId()));
+        }
+
+        List<Department> departments = department.getHospital().getDepartments();
+        departments.removeIf(s->s.getId().equals(id));
+
+        List<Doctor> doctors = department.getDoctors();
+        doctors.forEach(d->d.getDepartments().removeIf(s->s.getId().equals(id)));
+
+
+        departmentRepository.deleteById(id);
     }
 
     @Override

@@ -7,6 +7,8 @@ import lombok.Setter;
 import peaksoft.myExceptions.UniqueException;
 
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,17 +34,19 @@ public class Doctor {
     private String lastName;
     private String position;
 
+    @NotBlank
+    @Email(message = "Invalid email address")
     private String  email;
     @ManyToMany(cascade = {REFRESH,DETACH,MERGE,PERSIST})
-    private List<Department>departments ;
-    public void addDepartment(Department department) throws UniqueException{
+    private List<Department>departments = new ArrayList<>();
+    public void addDepartment(Department department) {
         if (departments == null){
             departments = new ArrayList<>();
         }
         departments.add(department);
     }
-    @OneToMany(mappedBy = "doctor",cascade = ALL)
-    private List<Appointment>appointments;
+    @OneToMany(mappedBy = "doctor",cascade = ALL,fetch = FetchType.EAGER)
+    private List<Appointment>appointments = new ArrayList<>();
     @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST})
     private Hospital hospital;
     @Transient

@@ -18,17 +18,17 @@
           th:method="POST">
 
         <div><div>
-                <input th:field="*{firstName}" type="text"  placeholder="Doctor first name" >
+                <input th:field="*{firstName}" type="text"  placeholder="Doctor first name" required >
         </div>
             <div>
-                <input th:field="*{lastName}" type="text"  placeholder="Doctor last name" >
+                <input th:field="*{lastName}" type="text"  placeholder="Doctor last name" required >
             </div>
             <div>
-                <input th:field="*{position}" type="text"  placeholder="Doctor position " >
+                <input th:field="*{position}" type="text"  placeholder="Doctor position " required >
             </div>
 
             <div>
-                <input th:field="*{email}" type="email"  placeholder="email " >
+                <input th:field="*{email}" type="email"  placeholder="email "  required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" >
             </div>
 
         </div>

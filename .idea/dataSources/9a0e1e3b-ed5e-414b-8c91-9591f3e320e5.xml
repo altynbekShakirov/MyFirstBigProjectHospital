@@ -11,9 +11,9 @@
 4||10|c|G
 4||10|C|G
 4||10|T|G</Grants>
-      <IntrospectionStateNumber>8231</IntrospectionStateNumber>
+      <IntrospectionStateNumber>8321</IntrospectionStateNumber>
       <ServerVersion>15.1</ServerVersion>
-      <StartupTime>1677221629</StartupTime>
+      <StartupTime>1677330067</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -816,7 +816,7 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>8231</IntrospectionStateNumber>
+      <IntrospectionStateNumber>8321</IntrospectionStateNumber>
       <ObjectId>53417</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4258,7 +4258,7 @@ false Zulu
     <schema id="270" parent="4" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>8231</IntrospectionStateNumber>
+      <IntrospectionStateNumber>8321</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4337,7 +4337,7 @@ false Zulu
     </table>
     <table id="283" parent="270" name="patients">
       <ObjectId>55186</ObjectId>
-      <StateNumber>8190</StateNumber>
+      <StateNumber>8232</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4699,7 +4699,13 @@ false Zulu
       <StateNumber>8185</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <foreign-key id="333" parent="283" name="fkavr69byb4acg3j289g1oq08pk">
+    <column id="333" parent="283" name="phone_number">
+      <DasType>varchar(255)|0s</DasType>
+      <Position>8</Position>
+      <StateNumber>8232</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="334" parent="283" name="fkavr69byb4acg3j289g1oq08pk">
       <ColNames>hospital_id</ColNames>
       <ObjectId>55242</ObjectId>
       <RefColNames>id</RefColNames>
@@ -4709,7 +4715,7 @@ false Zulu
       <RefTableName>hospitals</RefTableName>
       <RefTableKind>table</RefTableKind>
     </foreign-key>
-    <index id="334" parent="283" name="patients_pkey">
+    <index id="335" parent="283" name="patients_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>55191</ObjectId>
@@ -4718,12 +4724,27 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="335" parent="283" name="patients_pkey">
+    <index id="336" parent="283" name="uk_jmj4vn423f1ecw04a2mcv470e">
+      <ColNames>phone_number</ColNames>
+      <ObjectId>55248</ObjectId>
+      <StateNumber>8234</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+      <CollationNames>default</CollationNames>
+      <CollationIds>100</CollationIds>
+      <CollationParentNames>pg_catalog</CollationParentNames>
+    </index>
+    <key id="337" parent="283" name="patients_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>55192</ObjectId>
       <Primary>1</Primary>
       <StateNumber>8185</StateNumber>
       <UnderlyingIndexId>55191</UnderlyingIndexId>
+    </key>
+    <key id="338" parent="283" name="uk_jmj4vn423f1ecw04a2mcv470e">
+      <ObjectId>55249</ObjectId>
+      <StateNumber>8234</StateNumber>
+      <UnderlyingIndexId>55248</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

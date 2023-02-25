@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static jakarta.persistence.CascadeType.*;
 
@@ -27,7 +26,7 @@ public class Department {//Бөлүм
     @Column(unique = true)
     private String name ;
     @ManyToMany(mappedBy = "departments",cascade = {PERSIST,MERGE,DETACH,REFRESH},fetch = FetchType.LAZY)
-    private List<Doctor>doctors;
+    private List<Doctor> doctors = new ArrayList<>();
 
     @ManyToOne(cascade = {REFRESH,DETACH,MERGE,PERSIST},fetch = FetchType.LAZY)
     private Hospital hospital;

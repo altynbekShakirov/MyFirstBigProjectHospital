@@ -19,16 +19,16 @@
           th:method="POST">
         <div>
             <div>
-                <input th:field="*{firstName}" placeholder="First Name">
+                <input th:field="*{firstName}" placeholder="First Name" required>
             </div>
             <div>
-                <input th:field="*{lastName}" placeholder="Last Name">
+                <input th:field="*{lastName}" placeholder="Last Name" required>
             </div>
             <div>
-                <input th:field="*{email}" placeholder=" Email">
+                <input th:field="*{email}" placeholder=" Email" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
             </div>
             <div>
-                <input th:field="*{position}" placeholder="Position ">
+                <input th:field="*{position}" placeholder="Position " required>
             </div>
         </div>
         <div>

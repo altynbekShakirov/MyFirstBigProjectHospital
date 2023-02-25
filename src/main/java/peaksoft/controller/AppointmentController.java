@@ -1,5 +1,6 @@
 package peaksoft.controller;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import peaksoft.service.PatientsService;
  */
 @Controller
 @RequestMapping("/appointments")
+@Transactional
 public class AppointmentController {
     private final AppointmentService appointmentService;
     private final DoctorService doctorService;

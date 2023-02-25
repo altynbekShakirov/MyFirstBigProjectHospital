@@ -41,28 +41,34 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
 
     @Override
     public List<Appointment> getAll(Long id) {
-        return entityManager.createQuery("select a from  Hospital l join l.appointments a where l.id=:id",Appointment.class).setParameter("id",id).getResultList();
+        try {
+            return entityManager.createQuery("select a from  Hospital l join l.appointments a where l.id=:id order by a.date desc ", Appointment.class).setParameter("id", id).getResultList();
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void update( Long id,Appointment newAppointment) {
-        Appointment oldAppointment = entityManager.find(Appointment.class, id);
-        oldAppointment.setDate(newAppointment.getDate());
-        oldAppointment.setDepartment(entityManager.find(Department.class,newAppointment.getDepartmentId()));
-        oldAppointment.setDoctor(entityManager.find(Doctor.class,newAppointment.getDoctorId()));
-        oldAppointment.setPatients(entityManager.find(Patient.class,newAppointment.getPatientId()));
+        try {
+
+
+            Appointment oldAppointment = entityManager.find(Appointment.class, id);
+            oldAppointment.setDate(newAppointment.getDate());
+            oldAppointment.setDepartment(entityManager.find(Department.class, newAppointment.getDepartmentId()));
+            oldAppointment.setDoctor(entityManager.find(Doctor.class, newAppointment.getDoctorId()));
+            oldAppointment.setPatients(entityManager.find(Patient.class, newAppointment.getPatientId()));
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+
 
     }
 
 
     @Override
+    @Transactional
     public void delete(Long id) {
-        try {
-            List<Hospital> hospitals = entityManager.createQuery("select h from Hospital h ", Hospital.class).getResultList();
-            hospitals.forEach(s -> s.getAppointments().removeIf(a -> a.getId().equals(id)));
-            entityManager.remove(entityManager.find(Appointment.class, id));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        entityManager.remove(entityManager.find(Appointment.class, id));
     }
 }
