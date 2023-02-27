@@ -32,10 +32,10 @@ public class Patient {//бейтаптар
     @SequenceGenerator(name = "patients_id_gen", sequenceName = "patients_id_seq", allocationSize = 1)
     private Long id;
     @Column(name = "first_name")
-    @NotEmpty(message = "First name must not be empty!")
+    @NotBlank(message = "First name must not be empty!")
     private String firstName;
     @Column(name = "last_name")
-    @NotEmpty(message = "Last name must not be empty!")
+    @NotBlank(message = "Last name must not be empty!")
     private String lastName;
     @Column(name = "phone_number", unique = true)
     @Pattern(regexp = "^\\+996\\d{3} \\d{3} \\d{3} $", message = "The phone number must be 12 digits long and start with +996 !!!")

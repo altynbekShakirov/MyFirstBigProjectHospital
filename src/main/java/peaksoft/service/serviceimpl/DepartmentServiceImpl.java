@@ -49,15 +49,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public void deleteById(Long id) {
         Department department = departmentRepository.getById(id);
-//        Hospital hospital = department.getHospital();
-//        List<Appointment>appointments=department.getHospital().getAppointments();
-//        appointments.forEach(a-> a.getDepartment().getHospital().setAppointments(null));
-//        appointments.forEach(a ->a.getDoctor().setAppointments(null));
-//        hospital.getAppointments().removeAll(appointments);
-//        for (int i = 0; i < appointments.size(); i++) {
-//            appointmentRepository.delete(appointments.get(i).getId());
-//
-//        }
         List<Appointment> appointments = department.getHospital().getAppointments();
 
         if (appointments != null) {

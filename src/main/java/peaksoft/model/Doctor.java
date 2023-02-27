@@ -28,11 +28,15 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "doctor_id_gen")
     @SequenceGenerator(name = "doctor_id_gen",sequenceName = "doctor_id_seq",allocationSize = 1)
     private Long id;
+    @NotBlank
     @Column(name = "first_name")
     private String firstName;
+    @NotBlank
     @Column(name = "last_name")
     private String lastName;
+    @NotBlank
     private String position;
+
 
     @NotBlank
     @Email(message = "Invalid email address")

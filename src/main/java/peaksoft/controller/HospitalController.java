@@ -1,12 +1,13 @@
 package peaksoft.controller;
 
 import peaksoft.model.Hospital;
+import peaksoft.service.DoctorService;
 import peaksoft.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import peaksoft.service.PatientsService;
 
 
 /**
@@ -17,10 +18,14 @@ import org.springframework.web.bind.annotation.*;
 public class HospitalController {
 
     private final HospitalService service;
+    private final DoctorService doctorService;
+    private final PatientsService patientsService;
      @Autowired
-    public HospitalController(HospitalService service) {
+    public HospitalController(HospitalService service, DoctorService doctorService, PatientsService patientsService) {
         this.service = service;
-    }
+         this.doctorService = doctorService;
+         this.patientsService = patientsService;
+     }
 
      @GetMapping
      String getAll(Model model){
@@ -66,6 +71,15 @@ public class HospitalController {
          return "hospital/profile";
 
     }
+    @GetMapping("/{hospitalId}/count")
+    String countDoctorsAndPatients(@PathVariable Long hospitalId,Model model){
+         model.addAttribute("hospitalId",hospitalId);
+         model.addAttribute("doctorCount",doctorService.countDoctors(hospitalId));
+         model.addAttribute("patientCount",patientsService.countPatients(hospitalId));
+         return "hospital/hospitals";
+
+    }
+
 
 
 }

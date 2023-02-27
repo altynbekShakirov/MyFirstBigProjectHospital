@@ -14,6 +14,10 @@
         <th scope="col">Name</th>
         <th scope="col">Address</th>
         <th scope="col">Profile</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Update</th>
+        <th scope="col">Count Patients</th>
+        <th scope="col">Count Doctors</th>
 
     </tr>
     </thead>
@@ -26,12 +30,13 @@
         <td><form th:method="DELETE" th:action="@{/hospitals/{id}/deleteHospital (id=${hospital.id})}">
                 <input type="submit" value="Delete"/>
             </form>
-        </td><td/>
         <td>
             <a th:href="@{/hospitals/{id}/edit(id=${hospital.getId()})}">
                 <button>Update</button>
             </a>
         </td>
+        <td th:text="${patientCount}"> Count Patient</td>
+        <td th:text="${doctorCount}"> Count Doctor</td>
     </tr>
 
 

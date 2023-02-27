@@ -30,26 +30,39 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
 
     @Override
     public String save(Appointment appointment) {
-        entityManager.merge(appointment);
-        return "Successfully saved";
+        try {
+
+
+            entityManager.merge(appointment);
+            return "Successfully saved";
+        } catch (RuntimeException e) {
+            return e.getMessage();
+        }
     }
 
     @Override
     public Appointment getById(Long id) {
-        return entityManager.find(Appointment.class,id);
+        try {
+
+
+            return entityManager.find(Appointment.class, id);
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @Override
     public List<Appointment> getAll(Long id) {
         try {
             return entityManager.createQuery("select a from  Hospital l join l.appointments a where l.id=:id order by a.date desc ", Appointment.class).setParameter("id", id).getResultList();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void update( Long id,Appointment newAppointment) {
+    public void update(Long id, Appointment newAppointment) {
         try {
 
 
@@ -58,7 +71,7 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
             oldAppointment.setDepartment(entityManager.find(Department.class, newAppointment.getDepartmentId()));
             oldAppointment.setDoctor(entityManager.find(Doctor.class, newAppointment.getDoctorId()));
             oldAppointment.setPatients(entityManager.find(Patient.class, newAppointment.getPatientId()));
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
