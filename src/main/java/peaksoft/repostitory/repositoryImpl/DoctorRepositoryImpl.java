@@ -1,6 +1,5 @@
 package peaksoft.repostitory.repositoryImpl;
 
-import peaksoft.model.Department;
 import peaksoft.model.Doctor;
 import peaksoft.model.Hospital;
 import peaksoft.repostitory.DoctorRepository;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

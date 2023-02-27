@@ -4,15 +4,12 @@ import jakarta.transaction.Transactional;
 import peaksoft.model.Appointment;
 import peaksoft.model.Department;
 import peaksoft.model.Doctor;
-import peaksoft.model.Hospital;
-import peaksoft.myExceptions.UniqueException;
 import peaksoft.repostitory.AppointmentRepository;
 import peaksoft.repostitory.DepartmentRepository;
 import peaksoft.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -36,7 +33,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public String assignDepartment(Long doctorId, Long departmentId) throws UniqueException {
+    public String assignDepartment(Long doctorId, Long departmentId)  {
         return departmentRepository.assignDepartment(doctorId, departmentId);
     }
 

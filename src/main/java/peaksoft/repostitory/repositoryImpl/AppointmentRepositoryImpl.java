@@ -49,6 +49,7 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
         }catch (RuntimeException e){
             System.out.println(e.getMessage());
         }
+        return  null;
 
     }
 
@@ -82,6 +83,13 @@ public class AppointmentRepositoryImpl implements AppointmentRepository {
     @Override
     @Transactional
     public void delete(Long id) {
-        entityManager.remove(entityManager.find(Appointment.class, id));
+        try {
+
+
+            entityManager.remove(entityManager.find(Appointment.class, id));
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+
+        }
     }
 }

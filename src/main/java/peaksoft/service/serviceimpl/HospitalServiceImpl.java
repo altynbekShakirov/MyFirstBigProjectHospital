@@ -1,6 +1,6 @@
 package peaksoft.service.serviceimpl;
 
-import lombok.NoArgsConstructor;
+
 import peaksoft.model.Hospital;
 import peaksoft.repostitory.HospitalRepository;
 import peaksoft.service.HospitalService;

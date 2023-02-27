@@ -13,5 +13,5 @@ public interface PatientsService {
     Patient getById(Long id);
     void  updatePatients(Long id, Patient newPatient);
     void deleteByPatientsId(Long id);
-    int countPatients(Long id);
+
 }

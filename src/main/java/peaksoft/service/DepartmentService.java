@@ -1,9 +1,7 @@
 package peaksoft.service;
 
 import peaksoft.model.Department;
-import peaksoft.myExceptions.UniqueException;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,7 +10,7 @@ import java.util.List;
 public interface DepartmentService {
     Department save(Long hospitalId, Department department);
     List<Department> getAll(Long id );
-    String assignDepartment(Long doctorId,Long departmentId) throws  UniqueException;
+    String assignDepartment(Long doctorId,Long departmentId);
     void update(Long id ,Department newDepartment);
     void deleteById(Long id);
 

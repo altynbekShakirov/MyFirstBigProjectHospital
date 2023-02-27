@@ -14,5 +14,5 @@ public interface DoctorService {
     Doctor getById(Long id);
     void  update(Long id,Doctor newDoctor);
     void delete(Long id);
-    int countDoctors(Long id);
+
 }

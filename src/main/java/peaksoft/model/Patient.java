@@ -6,11 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.validation.constraints.Pattern;
 
-import javax.validation.constraints.NotEmpty;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
+
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -26,7 +24,7 @@ import static jakarta.persistence.CascadeType.PERSIST;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Patient {//бейтаптар
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patients_id_gen")
     @SequenceGenerator(name = "patients_id_gen", sequenceName = "patients_id_seq", allocationSize = 1)

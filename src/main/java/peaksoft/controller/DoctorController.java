@@ -6,11 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.model.Department;
 import peaksoft.model.Doctor;
-import peaksoft.myExceptions.UniqueException;
 import peaksoft.service.DepartmentService;
 import peaksoft.service.DoctorService;
-
-import java.io.IOException;
 
 /**
  * The golden boy
@@ -71,7 +68,7 @@ public class DoctorController {
 
      @PostMapping("/{doctorId}/assignDoctor")
     private String assignDoctor(@PathVariable("doctorId") Long doctorId,
-                                @ModelAttribute("department") Department department) throws UniqueException {
+                                @ModelAttribute("department") Department department){
         Long id = department.getId();
         departmentService.assignDepartment(doctorId,id);
         return "redirect:/doctors/" + hospitalId;

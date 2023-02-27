@@ -59,8 +59,5 @@ public class PatientsServiceImpl implements PatientsService {
         patientsRepository.deleteByPatientsId(id);
     }
 
-    @Override
-    public int countPatients(Long id) {
-        return patientsRepository.getAll(id).size();
-    }
+
 }

@@ -21,7 +21,9 @@
         <td th:text="${hospital.address}">address</td>
         <td><a th:href="@{/departments/{hospitalId}(hospitalId=${hospital.id})}"><button>Departments</button></a>
         <td><a th:href="@{/doctors/{hospitalId}(hospitalId=${hospital.id})}"><button>Doctor</button></a></td>
+        <td th:text="${countDoctor}"></td>
         <td><a th:href="@{/patients/{hospitalId}(hospitalId=${hospital.id})}"><button>Patients</button></a></td>
+        <td th:text="${countPatient}"></td>
         <td><a th:href="@{/appointments/{hospitalId}(hospitalId=${hospital.id})}"><button>Appointments</button></a></td>
         <td><a th:href="@{/appointments/addAppointment/{hospitalId}(hospitalId=${hospital.id})}"><button>Add Appointment</button></a></td>
 

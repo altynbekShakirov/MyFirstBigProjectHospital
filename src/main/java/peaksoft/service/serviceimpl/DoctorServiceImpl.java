@@ -6,7 +6,7 @@ import peaksoft.model.Doctor;
 import peaksoft.model.Hospital;
 import peaksoft.repostitory.AppointmentRepository;
 import peaksoft.repostitory.DoctorRepository;
-import peaksoft.repostitory.PatientsRepository;
+
 import peaksoft.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -62,8 +62,5 @@ public class DoctorServiceImpl implements DoctorService {
         doctorRepository.delete(id);
     }
 
-    @Override
-    public int countDoctors(Long id) {
-        return doctorRepository.getAll(id).size();
-    }
+
 }

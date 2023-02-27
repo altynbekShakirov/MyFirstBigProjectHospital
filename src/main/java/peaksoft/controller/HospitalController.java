@@ -20,6 +20,7 @@ public class HospitalController {
     private final HospitalService service;
     private final DoctorService doctorService;
     private final PatientsService patientsService;
+
      @Autowired
     public HospitalController(HospitalService service, DoctorService doctorService, PatientsService patientsService) {
         this.service = service;
@@ -48,6 +49,7 @@ public class HospitalController {
     @GetMapping("/{id}/edit")
      String updateHospital(@PathVariable("id") Long id, Model model) {
         model.addAttribute("oldHospital", service.getById(id));
+
         return "hospital/update";
     }
 
@@ -55,6 +57,7 @@ public class HospitalController {
      String saveUpdate(@PathVariable("id")Long id,
             @ModelAttribute("hospital") Hospital hospital) {
         service.update(id,hospital);
+
         return "redirect:/hospitals";
     }
 
@@ -68,17 +71,13 @@ public class HospitalController {
          String  profile(Model model,@PathVariable("hospitalId")Long id ){
          model.addAttribute("hospital",service.getById(id));
          model.addAttribute("hospitalId",id);
-         return "hospital/profile";
+        model.addAttribute("countPatient",patientsService.getAll(id).size());
+        model.addAttribute("countDoctor",doctorService.getAll(id).size());
+
+        return "hospital/profile";
 
     }
-    @GetMapping("/{hospitalId}/count")
-    String countDoctorsAndPatients(@PathVariable Long hospitalId,Model model){
-         model.addAttribute("hospitalId",hospitalId);
-         model.addAttribute("doctorCount",doctorService.countDoctors(hospitalId));
-         model.addAttribute("patientCount",patientsService.countPatients(hospitalId));
-         return "hospital/hospitals";
 
-    }
 
 
 

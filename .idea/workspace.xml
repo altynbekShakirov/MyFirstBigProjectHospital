@@ -9,16 +9,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="315fd7a9-d3d6-4e29-8196-611383df1dc7" name="Changes" comment="last commit">
+    <list default="true" id="315fd7a9-d3d6-4e29-8196-611383df1dc7" name="Changes" comment="first commit">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9a0e1e3b-ed5e-414b-8c91-9591f3e320e5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9a0e1e3b-ed5e-414b-8c91-9591f3e320e5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9a0e1e3b-ed5e-414b-8c91-9591f3e320e5/storage_v2/_src_/database/hospital.Ov7m7Q/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9a0e1e3b-ed5e-414b-8c91-9591f3e320e5/storage_v2/_src_/database/hospital.Ov7m7Q/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/config/HibernateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/config/HibernateConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/controller/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/controller/DoctorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/controller/HospitalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/controller/HospitalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/model/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/model/Doctor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/model/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/model/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/myExceptions/UniqueException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/repostitory/DepartmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/repostitory/DepartmentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/repostitory/repositoryImpl/AppointmentRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/repostitory/repositoryImpl/AppointmentRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/repostitory/repositoryImpl/DepartmentRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/repostitory/repositoryImpl/DepartmentRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/repostitory/repositoryImpl/DoctorRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/repostitory/repositoryImpl/DoctorRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/service/DepartmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/service/DepartmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/service/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/service/DoctorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/service/PatientsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/service/PatientsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/AppointmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/AppointmentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/DepartmentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/DepartmentServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/appointment/saveAppointment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/appointment/saveAppointment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/DoctorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/DoctorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/HospitalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/HospitalServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/PatientsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/peaksoft/service/serviceimpl/PatientsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hospital/hospitals.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hospital/hospitals.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hospital/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hospital/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/hospital/startPage.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +219,7 @@
       <workItem from="1677330837072" duration="12136000" />
       <workItem from="1677341549890" duration="4007000" />
       <workItem from="1677420182371" duration="689000" />
-      <workItem from="1677469585783" duration="1661000" />
+      <workItem from="1677469585783" duration="5208000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1677239913551</created>
@@ -221,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677331609254</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="first commit">
+      <created>1677482125673</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677482125673</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +252,7 @@
     <MESSAGE value="new for me" />
     <MESSAGE value="commit" />
     <MESSAGE value="last commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="last commit" />
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
   </component>
 </project>
